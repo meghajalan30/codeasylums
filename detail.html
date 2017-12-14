@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link href="blogin.css" rel="stylesheet"  type="text/css">
+</head>
+<body>
+
+<div class="container">
+	<h1 id="title">Heading</h1>
+	<img id="image" src="a.jpg" style="width:100%; margin-top:40px;">
+	<p id="content" style="margin-top:50px">Prosciutto picanha rump shank, ham beef ribs jerky turducken kielbasa andouille boudin short ribs flank. Pork chop doner shankle bacon. Hamburger leberkas short loin sausage, venison pastrami pork loin pork belly salami meatloaf sirloin frankfurter shankle. Pancetta brisket ball tip ground round leberkas beef buffalo tri-tip short loin. Kevin tongue short ribs pork jowl swine turkey shank t-bone porchetta boudin strip steak shankle turducken.</p>
+
+Shankle pastrami kielbasa, t-bone filet mignon chicken tri-tip venison boudin pork prosciutto meatloaf spare ribs. Beef meatball pork belly ribeye spare ribs frankfurter, tri-tip bresaola andouille t-bone ham chicken bacon fatback. Chicken short ribs salami, cow ribeye venison drumstick shankle andouille ham. Shank leberkas tri-tip kielbasa. 
+<hr>
+<h3>COMMENTS:</h3>
+<div><span style="font-weight:bold;">Charlie:</span> Its Amazing!</div>
+<div><span style="font-weight:bold;">Brown:</span> Great</div>
+<div>
+	<form>
+		<!--<label for="name">Name:</label>
+		<input type="text" > -->
+		<label for="comment">Your Comment:</label>
+		<input type="text" id="comment" >
+		<input type="Submit" value="DONE">
+</div>
+
+
+ <script>
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange=function(){
+      if(this.readyState==4 && this.status==200){
+       var data=JSON.parse(this.responseText);
+       //console.log(data);
+       document.getElementById("title").innerHTML=data.title;
+       document.getElementById("image").src=data.imageUrl;
+       document.getElementById("content").innerHTML=data.content;
+      }
+    };
+     var ob={
+      "blogId":localStorage.getItem("id")
+    };
+    xhttp.open("POST","http://koushikmln.com:7500/blogs/getBlog" ,true);//method url async  //fething the content from this url and using in our page
+    //send headers
+    xhttp.setRequestHeader("Content-type", "application/json");//sending data as json object
+   
+    xhttp.send(JSON.stringify(ob));
+          </script>
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>
